@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Movement</title>
+
+    <style>
+        body {
+            background-color: #098a98;
+            /*background-image: url(./flappyland.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 95vh;
+            animation: round infinite 5s 1 direction fill-mode;*/
+        }
+
+        .bird {
+            height: 70px;
+            position: absolute;
+            top: 200px;
+            left: 100px;
+            transition: all 0.01s linear;
+            z-index:6;
+        }
+
+        .ground{
+            position: fixed;
+            bottom:0;
+            left:0;
+            width: 100%;
+            height: 700px;
+            background-image: url("flappyland.png");
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+        }
+
+        
+
+        @keyframes jump {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-50px); }
+            100% { transform: translateY(0); }
+        }
+
+
+    
+    </style>
+</head>
+`
+<body>
+    <img class="bird" src="./flappybird.png" alt="bird">
+    <div class="ground"></div>
+</body>
+<script src="script.js"></script>
+</html>
