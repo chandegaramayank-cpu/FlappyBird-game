@@ -28,15 +28,14 @@ document.addEventListener("keydown", (e) => {
 const ground = document.querySelector(".ground");
 let x = 0;
 function moveGround() {
-  if(!gameRunning) return;
+  if (!gameRunning) return;
   x -= 5;
-  ground.style.backgroundPosition = `${x}px`;        //mathod.1
+  ground.style.backgroundPosition = `${x}px`; //mathod.1
   //ground.style.backgroundPosition = x + "px 0px";  //mathod.2
 
   requestAnimationFrame(moveGround);
 }
 // moveGround();
-
 
 const bird = document.querySelector(".bird");
 
@@ -44,7 +43,7 @@ let y = 200;
 let velocity = 0;
 
 function birdFall() {
-  if(!gameRunning) return;  //Sabse pehle code check karta hai ki "gameRunning (variable)" true hai ya nahi. Agar game khatam ho chuka hai ya paused hai, toh "return" ho jata hai, yani aage ka code nahi chalta.
+  if (!gameRunning) return; //Sabse pehle code check karta hai ki "gameRunning (variable)" true hai ya nahi. Agar game khatam ho chuka hai ya paused hai, toh "return" ho jata hai, yani aage ka code nahi chalta.
   // gravity
   velocity += 0.5;
   y += velocity;
@@ -52,61 +51,103 @@ function birdFall() {
   bird.style.top = y + "px";
 
   checkCollision();
-  
+
   requestAnimationFrame(birdFall);
 }
 
-document.addEventListener("keydown",(e) => {
+document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && gameRunning) {
     velocity = -8;
-    
   }
 });
 // birdFall();
 
+const btn = document.createElement("button");{
 
-const btn = document.createElement("button");
+
 btn.innerText = "Click Me";
-btn.style.position = "absolute"
-btn.style.borderRadius = "20px"
-btn.style.border = "none"
-btn.style.height = "100px"
-btn.style.width = "200px"
-btn.style.top = "45%"
-btn.style.left = "45%"
-
-
-
-btn.onclick = () => {
-  gameRunning = true
-
-  moveGround()
-  birdFall()
-  btn.style.display = "none"
+btn.style.position = "absolute";
+btn.style.borderRadius = "20px";
+btn.style.border = "none";
+btn.style.height = "100px";
+btn.style.width = "200px";
+btn.style.top = "45%";
+btn.style.left = "45%"; 
 }
+btn.onclick = () => {
+  gameRunning = true;
+
+  moveGround();
+  birdFall();
+  movePipes()
+  btn.style.display = "none";
+};
 
 document.body.appendChild(btn);
 
 
-function checkCollision(){
-  let screenHeight = window.innerHeight
-  let birdHeight = bird.clientHeight
+
+
+
+const topPipe = document.querySelector(".top")
+const bottomPipe = document.querySelector(".bottom");
+
+let pipeX =window.innerWidth
+let gap =150
+
+function setPipeHeight() {
+  let randomTop = Math.random() * 800;
+ 
+
+  topPipe.style.height = randomTop + "px";
+  bottomPipe.style.height = window.innerHeight - randomTop - gap + "px";
+}
+
+function movePipes() {
+  if (!gameRunning) return;
+
+  pipeX -= 5;
+
+  topPipe.style.left = pipeX + "px";
+  bottomPipe.style.left = pipeX + "px";
+
+  // reset pipe
+  if (pipeX < -60) {
+    pipeX = window.innerWidth;
+    setPipeHeight(); // new random gap
+  }
+
+  requestAnimationFrame(movePipes);
+}
+
+// start once
+setPipeHeight();
+// movePipes();
+
+
+
+
+
+
+
+function checkCollision() {
+  let screenHeight = window.innerHeight;
+  let birdHeight = bird.clientHeight;
 
   // TOP collision
   if (y <= 0) {
-    restartGame();  
+    restartGame();
   }
 
   //bottom collision
-  if(y>= screenHeight - birdHeight){
-    restartGame()
+  if (y >= screenHeight - birdHeight) {
+    restartGame();
   }
 }
-checkCollision()
+checkCollision();
 
-function restartGame(){
-  gameRunning = false
+function restartGame() {
+  gameRunning = false;
 
   location.reload();
 }
- 

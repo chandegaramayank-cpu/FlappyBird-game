@@ -17,7 +17,7 @@
 
         .bird {
             height: 70px;
-            position: absolute;
+            position: fixed;
             top: 200px;
             left: 100px;
             transition: all 0.01s linear;
@@ -33,6 +33,7 @@
             background-image: url("flappyland.png");
             background-repeat: repeat-x;
             background-size: auto 100%;
+            z-index: -1;
         }
 
         
@@ -43,12 +44,33 @@
             100% { transform: translateY(0); }
         }
 
+        .pipe {
+            position: fixed;
+            width: 60px;
+            background-image: url(./flappypipe.png);
+            background-size: cover;
+            z-index: 5;
+        }
+
+        .top {
+            width: 400px;
+            top: 0;
+            transform: rotate(180deg);
+        }
+        
+        .bottom {
+            width: 400px;
+            bottom: 0;
+        }
+
 
     
     </style>
 </head>
-`
+
 <body>
+    <div class="pipe top"></div>
+    <div class="pipe bottom"></div>
     <img class="bird" src="./flappybird.png" alt="bird">
     <div class="ground"></div>
 </body>
