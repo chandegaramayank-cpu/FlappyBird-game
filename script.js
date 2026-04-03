@@ -96,7 +96,7 @@ let pipeX =window.innerWidth
 let gap =150
 
 function setPipeHeight() {
-  let randomTop = Math.random() * 800;
+  let randomTop = Math.random() * 500;
  
 
   topPipe.style.height = randomTop + "px";
@@ -113,7 +113,7 @@ function movePipes() {
 
   // reset pipe
   if (pipeX < -60) {
-    pipeX = window.innerWidth;
+    pipeX = window.innerHeight;
     setPipeHeight(); // new random gap
   }
 
@@ -123,7 +123,6 @@ function movePipes() {
 // start once
 setPipeHeight();
 // movePipes();
-
 
 
 
@@ -143,11 +142,20 @@ function checkCollision() {
   if (y >= screenHeight - birdHeight) {
     restartGame();
   }
+
+  
 }
 checkCollision();
 
+const gameOversound = new Audio("./faaa0_6.mp3")
 function restartGame() {
   gameRunning = false;
 
-  location.reload();
+  gameOversound.play()
+  console.log("FAAA")
+  
+  setTimeout(()=>{
+    location.reload();
+  },1200)
+  
 }
