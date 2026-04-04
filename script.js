@@ -42,6 +42,10 @@ const bird = document.querySelector(".bird");
 let y = 200;
 let velocity = 0;
 
+
+
+const plysoarr = ["./sounds/dry-fart.mp3","./sounds/vine-boom.mp3"]
+const gamePlaysound = new Audio(plysoarr[Math.floor(Math.random()*plysoarr.length)])
 function birdFall() {
   if (!gameRunning) return; //Sabse pehle code check karta hai ki "gameRunning (variable)" true hai ya nahi. Agar game khatam ho chuka hai ya paused hai, toh "return" ho jata hai, yani aage ka code nahi chalta.
   // gravity
@@ -49,7 +53,7 @@ function birdFall() {
   y += velocity;
 
   bird.style.top = y + "px";
-
+  
   checkCollision();
 
   requestAnimationFrame(birdFall);
@@ -57,6 +61,9 @@ function birdFall() {
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && gameRunning) {
+    gamePlaysound.currentTime = 0
+    gamePlaysound.play()
+    console.log("jumpSound Played")
     velocity = -8;
   }
 });
@@ -147,15 +154,18 @@ function checkCollision() {
 }
 checkCollision();
 
-const gameOversound = new Audio("./faaa0_6.mp3")
+//game over function && sound arr
+
+const soarr = ["./sounds/faaa0_6.mp3","./sounds/flappychicken-screaming.mp3"]
+const gameOversound = new Audio(soarr[Math.floor(Math.random()*soarr.length)])
 function restartGame() {
   gameRunning = false;
 
   gameOversound.play()
-  console.log("FAAA")
+  console.log("GameOver Sound Played")
   
   setTimeout(()=>{
     location.reload();
-  },1200)
+  },soarr.length*1000)
   
 }
