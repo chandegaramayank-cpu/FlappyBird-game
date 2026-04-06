@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird Movement</title>
+    <title>SlappyBird Pro v.0.1</title>
 
     <style>
         body {
@@ -14,7 +14,7 @@
             height: 95vh;
             animation: round infinite 5s 1 direction fill-mode;*/
         }
-
+        
         .bird {
             height: 70px;
             position: fixed;
@@ -23,7 +23,7 @@
             transition: all 0.01s linear;
             z-index:6;
         }
-
+        
         .ground{
             position: fixed;
             bottom:0;
@@ -35,20 +35,20 @@
             background-size: auto 100%;
             z-index: -1;
         }
-
         
-
+        
+        
         @keyframes jump {
             0% { transform: translateY(0); }
             50% { transform: translateY(-50px); }
             100% { transform: translateY(0); }
         }
-
+        
         .pipe {
             position: fixed;
-            width: 60px;
+            width: 70px;
             background-image: url(./flappypipe.png);
-            background-size: cover;
+            background-size: 100% 100%;
             z-index: 5;
         }
 
