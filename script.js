@@ -93,21 +93,31 @@ btn.onclick = () => {
 document.body.appendChild(btn);
 
 
-
+const gameHeight = window.innerHeight;
+const groundHeight = 100; // adjust based on your ground
 
 
 const topPipe = document.querySelector(".top")
 const bottomPipe = document.querySelector(".bottom");
 
 let pipeX =window.innerWidth
-let gap =150
+let gap = 150;
+let minHeight = 80;
 
 function setPipeHeight() {
-  let randomTop = Math.random() * 500;
- 
+  let screenHeight = window.innerHeight;
+
+  // subtract ground area (IMPORTANT)
+  let usableHeight = screenHeight - 100; // adjust 100 to your ground height
+
+  let maxTop = usableHeight - gap - minHeight;
+
+  let randomTop = Math.random() * maxTop + minHeight;
+
+  let bottomHeight = usableHeight - randomTop - gap;
 
   topPipe.style.height = randomTop + "px";
-  bottomPipe.style.height = window.innerHeight - randomTop - gap + "px";
+  bottomPipe.style.height = bottomHeight + "px";
 }
 
 function movePipes() {
@@ -118,18 +128,18 @@ function movePipes() {
   topPipe.style.left = pipeX + "px";
   bottomPipe.style.left = pipeX + "px";
 
+  console.log({top})
   // reset pipe
   if (pipeX < -60) {
-    pipeX = window.innerHeight;
+    pipeX = window.innerWidth + 80;
     setPipeHeight(); // new random gap
-  }
+   }
 
   requestAnimationFrame(movePipes);
 }
 
 // start once
 setPipeHeight();
-// movePipes();
 
 
 
