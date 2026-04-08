@@ -45,23 +45,25 @@
         }
         
         .pipe {
-            position: fixed;
-            width: 70px;
-            background-image: url(./flappypipe.png);
-            background-size: 100% 100%;
-            z-index: 5;
-        }
+  position: fixed;
+  width: 70px;
+  background-image: url("./flappypipe.png");
+  background-repeat: no-repeat;
+  background-size: 70px auto;   /* ✅ no stretch */
+  background-position: center;
+  image-rendering: pixelated;
+  z-index: 5;
+}
 
-        .top {
-            width: 400px;
-            top: 0;
-            transform: rotate(180deg);
-        }
-        
-        .bottom {
-            width: 400px;
-            bottom: 0;
-        }
+.top {
+  top: 0;
+  transform: rotate(180deg);
+  transform-origin: center;
+}
+
+.bottom {
+  bottom: 100px; /* 👈 same as ground height */
+}
 
 
     
