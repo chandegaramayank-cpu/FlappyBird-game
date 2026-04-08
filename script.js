@@ -81,6 +81,7 @@ btn.style.width = "200px";
 btn.style.top = "45%";
 btn.style.left = "45%"; 
 }
+
 btn.onclick = () => {
   gameRunning = true;
 
@@ -89,26 +90,22 @@ btn.onclick = () => {
   movePipes()
   btn.style.display = "none";
 };
-
 document.body.appendChild(btn);
 
+//pipe code
 
-const gameHeight = window.innerHeight;
-const groundHeight = 100; // adjust based on your ground
-
-
-const topPipe = document.querySelector(".top")
+const topPipe = document.querySelector(".top");
 const bottomPipe = document.querySelector(".bottom");
 
-let pipeX =window.innerWidth
+let pipeX = window.innerWidth;
 let gap = 150;
 let minHeight = 80;
+let groundHeight = 100;
 
 function setPipeHeight() {
   let screenHeight = window.innerHeight;
 
-  // subtract ground area (IMPORTANT)
-  let usableHeight = screenHeight - 100; // adjust 100 to your ground height
+  let usableHeight = screenHeight - groundHeight;
 
   let maxTop = usableHeight - gap - minHeight;
 
@@ -128,20 +125,16 @@ function movePipes() {
   topPipe.style.left = pipeX + "px";
   bottomPipe.style.left = pipeX + "px";
 
-  console.log({top})
-  // reset pipe
-  if (pipeX < -60) {
-    pipeX = window.innerWidth + 80;
-    setPipeHeight(); // new random gap
-   }
+  if (pipeX < -80) {
+    pipeX = window.innerWidth +80;
+    setPipeHeight();
+  }
 
   requestAnimationFrame(movePipes);
 }
 
-// start once
+// run once
 setPipeHeight();
-
-
 
 
 
