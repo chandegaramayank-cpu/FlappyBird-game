@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./modiiiii.png" type="image/x-icon">
     <title>SlappyBird Pro v.0.1</title>
 
     <style>
@@ -45,25 +46,25 @@
         }
         
         .pipe {
-  position: fixed;
-  width: 70px;
-  background-image: url("./flappypipe.png");
-  background-repeat: no-repeat;
-  background-size: 70px auto;   /* ✅ no stretch */
-  background-position: center;
-  image-rendering: pixelated;
-  z-index: 5;
-}
+            position: fixed;
+            width: 70px;
+            background-image: url("./flappypipe.png");
+            background-repeat: no-repeat;
+            background-size: 70px auto;  
+            background-position: center;
+            image-rendering: pixelated;
+            z-index: 5;
+        }
 
-.top {
-  top: 0;
-  transform: rotate(180deg);
-  transform-origin: center;
-}
+        .top {
+          top: 0;
+          transform: rotate(180deg);
+          transform-origin: center;
+        }
 
-.bottom {
-  bottom: 100px; /* 👈 same as ground height */
-}
+        .bottom {
+          bottom: 100px;
+        }
 
 
     

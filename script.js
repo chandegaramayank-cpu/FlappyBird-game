@@ -63,7 +63,7 @@ document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && gameRunning) {
     gamePlaysound.currentTime = 0
     gamePlaysound.play()
-    console.log("jumpSound Played")
+    console.log("jumpSound")
     velocity = -8;
   }
 });
@@ -82,6 +82,7 @@ btn.style.top = "45%";
 btn.style.left = "45%"; 
 }
 
+
 btn.onclick = () => {
   gameRunning = true;
 
@@ -98,8 +99,8 @@ const topPipe = document.querySelector(".top");
 const bottomPipe = document.querySelector(".bottom");
 
 let pipeX = window.innerWidth;
-let gap = 150;
-let minHeight = 80;
+let gap = 20;
+let minHeight = 150;
 let groundHeight = 100;
 
 function setPipeHeight() {
@@ -115,6 +116,8 @@ function setPipeHeight() {
 
   topPipe.style.height = randomTop + "px";
   bottomPipe.style.height = bottomHeight + "px";
+
+  bottomPipe.style.bottom = groundHeight + "px";
 }
 
 function movePipes() {
@@ -125,15 +128,14 @@ function movePipes() {
   topPipe.style.left = pipeX + "px";
   bottomPipe.style.left = pipeX + "px";
 
-  if (pipeX < -80) {
-    pipeX = window.innerWidth +80;
+  if (pipeX < +5) {
+    pipeX = window.innerWidth -5;
     setPipeHeight();
   }
 
   requestAnimationFrame(movePipes);
 }
 
-// run once
 setPipeHeight();
 
 
